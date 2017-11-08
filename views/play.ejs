@@ -17,16 +17,14 @@
 </head>
 <body>
 <h1><%= title %></h1>
-<form>
-    <label for="username">Username:</label>
-    <div class="input-group col-sm-3">
-        <span class="input-group-addon">@</span>
-        <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
-               required="required" autofocus="autofocus">
-        <span class="input-group-btn">
-          <button class="btn btn-success" type="button">Go!</button>
-        </span>
-    </div>
-</form>
+<table>
+    <%for(var i = 0; i < board.height; i++){%>
+    <tr>
+        <%for(var j = 0; j < board.width; j++){%>
+        <td>x</td>
+        <%}%>
+    </tr>
+    <%}%>
+</table>
 </body>
 </html>
