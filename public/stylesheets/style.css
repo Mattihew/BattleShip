@@ -13,3 +13,8 @@ a
 {
     box-shadow: none;
 }
+
+tr[data-id]
+{
+    cursor: pointer;
+}

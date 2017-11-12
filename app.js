@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var play = require('./routes/play');
+var index = require('./routes/indexRoute');
+var lobbys = require('./routes/lobbysRoute');
+var play = require('./routes/playRoute');
 
 var app = express();
 
@@ -22,9 +23,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(
+{
+    secret: 'Matts Battleship',
+    cookie:
+    {
+        httpOnly: false
+    }
+}));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/lobbys', lobbys);
 app.use('/play', play);
 
 // catch 404 and forward to error handler

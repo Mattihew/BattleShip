@@ -9,7 +9,7 @@ router.get('/', function(req, res, next)
         width: req.query.w,
         height: req.query.h
     };
-    res.render('play', { title: 'BattleShip', board: board });
+    res.render('play', { title: 'BattleShip', username: req.session.username, board: board });
 });
 
 module.exports = router;

@@ -4,6 +4,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <!--suppress HtmlUnknownTarget -->
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -14,19 +15,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
+    <!--suppress HtmlUnknownTarget -->
+    <script src="javascript/lobby.js"></script>
 </head>
 <body>
 <h1><%= title %></h1>
-<form action="/" method="post">
-    <label for="username">Username:</label>
-    <div class="input-group col-sm-12 col-lg-6">
-        <span class="input-group-addon">@</span>
-        <input id="username" name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
-               required="required" autofocus="autofocus" value="<%= username %>">
-        <span class="input-group-btn">
-          <button class="btn btn-success" type="submit">Go!</button>
-        </span>
-    </div>
-</form>
+<%= username%>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Players</th>
+    </thead>
+    <tbody>
+        <% for (var i = 0; i < lobbys.length; i++) {%>
+        <tr data-id="<%= lobbys[i].id %>">
+            <td><%= lobbys[i].name %></td>
+            <td><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></td>
+        </tr>
+        <% }%>
+    </tbody>
+</table>
 </body>
 </html>
