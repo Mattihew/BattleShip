@@ -11,5 +11,5 @@ deploy:
     secret_access_key: "Sy4Ll5Ra1/yM+NoQMYSeetA8W1U0eQHUdT40hxyq"
     application: battleship
     deployment_group: battleship
-    region: eu-west-2a
+    region: eu-west-2
     wait-until-deployed: true
