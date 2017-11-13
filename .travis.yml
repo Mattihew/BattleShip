@@ -3,13 +3,13 @@ node_js:
   - "node"
 deploy:
   - provider: npm
-    email: "me@mattihew.com"
+    email: me@mattihew.com
     api_key: NPM_TOKEN
   - provider: codedeploy
     revision_type: github
-    access_key_id: "AKIAIMFZ23YZP46KPYMQ"
-    secret_access_key_id: "Sy4Ll5Ra1/yM+NoQMYSeetA8W1U0eQHUdT40hxyq"
-    application: "battleship"
-    deployment_group: "battleship"
-    region: "eu-west-2a"
+    access_key_id: AKIAIMFZ23YZP46KPYMQ
+    secret_access_key_id: Sy4Ll5Ra1/yM+NoQMYSeetA8W1U0eQHUdT40hxyq
+    application: battleship
+    deployment_group: battleship
+    region: eu-west-2a
     wait-until-deployed: true
