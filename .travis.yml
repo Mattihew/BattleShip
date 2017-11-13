@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "node"
+deploy:
+  provider: npm
+  email: "me@mattihew.com"
+  api_key: "NPM_TOKEN"
