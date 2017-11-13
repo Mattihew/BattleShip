@@ -1,15 +1,3 @@
 language: node_js
 node_js:
   - "node"
-deploy:
-  - provider: npm
-    email: me@mattihew.com
-    api_key: NPM_TOKEN
-  - provider: codedeploy
-    revision_type: github
-    access_key_id: AKIAIMFZ23YZP46KPYMQ
-    secret_access_key: "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"
-    application: battleship
-    deployment_group: battleship
-    region: eu-west-2
-    wait-until-deployed: true
