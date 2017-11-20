@@ -1,0 +1,23 @@
+<form action="/lobbys" method="post">
+    <div class="form-group">
+        <label for="lobbyName">Name:</label>
+        <input class="form-control" id="lobbyName" name="lobbyName" placeholder="<%=username%>s lobby"/>
+    </div>
+    <div class="form-group">
+        <label for="lobbyMaxPlayers">Max Players:</label>
+        <input class="form-control" id="lobbyMaxPlayers" name="lobbyMaxPlayers" type="number" min="2" value="2"/>
+    </div>
+    <fieldset class="form-group">
+        <legend>Board</legend>
+        <div class="form-group">
+            <label for="boardWidth">Width:</label>
+            <input class="form-control" id="boardWidth" name="boardWidth" type="number" min="0" value="10" />
+        </div>
+        <div class="form-group">
+            <label for="boardHeight">Height:</label>
+            <input class="form-control" id="boardHeight" name="boardHeight" type="number" min="0" value="10" />
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="reset" class="btn btn-danger float-right">Reset</button>
+</form>

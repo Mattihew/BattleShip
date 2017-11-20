@@ -7,6 +7,10 @@ var generateID = function()
 
 module.exports =
 {
+    values: function()
+    {
+        return Object.values(lobbys);
+    },
     get: function(id)
     {
         return lobbys[id];

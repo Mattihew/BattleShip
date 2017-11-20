@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var lobbys = [];
+var lobbyCache = require('../models/LobbyCache');
 
 /* GET users listing. */
 router.get('/', function (req, res, next)
@@ -13,20 +13,24 @@ router.get('/', function (req, res, next)
     }
     else
     {
-        res.render('lobbys', {title: 'BattleShip', username: req.session.username, lobbys: lobbys});
+        res.render('lobbys', {title: 'BattleShip', username: req.session.username, lobbys: lobbyCache.values()});
     }
 });
 
 router.post('/', function(req, res, next)
 {
-    lobbys.push(
+    lobbyCache.put(
     {
-       id: Math.random().toString(36).substr(2),
-       name: "example Lobby",
-       players: 1,
-       maxPlayers: 2
+       name: req.body.lobbyName || req.session.username + "s lobby",
+       players: 0,
+       maxPlayers: req.body.lobbyMaxPlayers,
+       board:
+       {
+           width: req.body.boardWidth,
+           height: req.body.boardHeight
+       }
     });
-    res.sendStatus(201);
+    res.redirect('/lobbys');
 });
 
 module.exports = router;
