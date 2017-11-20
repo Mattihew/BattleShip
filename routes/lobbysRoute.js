@@ -17,8 +17,10 @@ router.get('/', function (req, res, next)
     }
 });
 
+// noinspection JSUnresolvedFunction
 router.post('/', function(req, res, next)
 {
+    // noinspection JSUnresolvedVariable
     lobbyCache.put(
     {
        name: req.body.lobbyName || req.session.username + "s lobby",

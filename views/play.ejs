@@ -6,6 +6,7 @@
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
     <!--suppress HtmlUnknownTarget -->
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/play.css'/>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -17,16 +18,17 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<h1><%= title %></h1>
-<%= username%>
-<table>
-    <% for (var i = 0; i < board.height; i++){%>
-    <tr>
-        <% for (var j = 0; j < board.width; j++){%>
-        <td>x</td>
-        <%}%>
-    </tr>
-    <%}%>
-</table>
+    <div class="container">
+        <h1><%= title %></h1>
+        <table class="table table-bordered">
+            <% for (var i = 0; i < board.height; i++){%>
+            <tr>
+                <% for (var j = 0; j < board.width; j++){%>
+                <td></td>
+                <%}%>
+            </tr>
+            <%}%>
+        </table>
+    </div>
 </body>
 </html>
