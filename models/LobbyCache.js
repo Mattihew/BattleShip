@@ -22,5 +22,6 @@ module.exports =
             lobby.id = generateID();
         }
         lobbys[lobby.id] = lobby;
+        return lobby.id;
     }
 };

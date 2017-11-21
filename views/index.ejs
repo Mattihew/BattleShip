@@ -16,22 +16,24 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<h1><%= title %></h1>
-<form action="/" method="post" class="col-sm-12 col-lg-6">
-    <label for="username">Username:</label>
-    <div class="input-group ">
-        <span class="input-group-addon">@</span>
-        <input id="username" name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
-               required="required" autofocus="autofocus" />
-        <span class="input-group-btn">
-          <button class="btn btn-success" type="submit">Go!</button>
-        </span>
+    <div class="container">
+        <% include header.ejs %>
+        <form action="/" method="post" class="col-sm-12 col-lg-6">
+            <label for="username">Username:</label>
+            <div class="input-group ">
+                <span class="input-group-addon">@</span>
+                <input id="username" name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                       required="required" autofocus="autofocus" />
+                <span class="input-group-btn">
+                  <button class="btn btn-success" type="submit">Go!</button>
+                </span>
+            </div>
+            <% if (taken) { %>
+            <div class="alert alert-danger">
+                <strong>Warning!</strong> That username is taken.
+            </div>
+            <% } %>
+        </form>
     </div>
-    <% if (taken) { %>
-    <div class="alert alert-danger">
-        <strong>Warning!</strong> That username is taken.
-    </div>
-    <% } %>
-</form>
 </body>
 </html>

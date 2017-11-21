@@ -6,15 +6,7 @@ var lobbyCache = require('../models/LobbyCache');
 /* GET users listing. */
 router.get('/', function (req, res, next)
 {
-    var username = req.session.username;
-    if (typeof username === 'undefined')
-    {
-        res.redirect('/');
-    }
-    else
-    {
-        res.render('lobbys', {title: 'BattleShip', username: req.session.username, lobbys: lobbyCache.values()});
-    }
+    res.render('lobbys', {title: 'BattleShip', username: req.session.username, lobbys: lobbyCache.values()});
 });
 
 // noinspection JSUnresolvedFunction

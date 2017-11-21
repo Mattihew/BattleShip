@@ -20,14 +20,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1><%= title %></h1>
-                </div>
-                <div class="col-sm-6">
-                    <%= username%>
-                </div>
-            </div>
+            <% include header.ejs %>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newLobby">New Lobby</button>
             <div id="newLobby" class="modal fade" role="dialog">
                 <div class="modal-dialog">

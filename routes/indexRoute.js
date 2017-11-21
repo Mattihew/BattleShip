@@ -8,7 +8,7 @@ router.get('/', function(req, res, next)
 {
     if (typeof req.session.username !== 'undefined')
     {
-        res.redirect('/lobby');
+        res.redirect('/lobbys');
     }
     res.render('index', { title: 'BattleShip', taken: false});
 });

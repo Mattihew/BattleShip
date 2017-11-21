@@ -18,3 +18,8 @@ tr[data-id]
 {
     cursor: pointer;
 }
+
+button
+{
+    cursor: pointer;
+}
