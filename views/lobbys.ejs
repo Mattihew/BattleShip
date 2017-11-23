@@ -39,12 +39,14 @@
                     <th>Players</th>
                 </thead>
                 <tbody>
-                    <% for (var i = 0; i < lobbys.length; i++) {%>
-                    <tr>
-                        <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].name %></a></td>
-                        <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></a></td>
-                    </tr>
-                    <% }%>
+                    <% for (var i = 0; i < lobbys.length; i++) {
+                    if (!lobbys[i].private) {%>
+                        <tr>
+                            <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].name %></a></td>
+                            <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></a></td>
+                        </tr>
+                    <% }
+                    }%>
                 </tbody>
             </table>
         </div>

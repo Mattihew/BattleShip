@@ -23,3 +23,8 @@ button
 {
     cursor: pointer;
 }
+
+table tr:hover a
+{
+    text-decoration: underline;
+}

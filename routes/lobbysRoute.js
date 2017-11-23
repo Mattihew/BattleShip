@@ -18,7 +18,7 @@ router.post('/', function(req, res, next)
         name: req.body.lobbyName || req.session.username + "s lobby",
         players: 0,
         maxPlayers: req.body.lobbyMaxPlayers,
-        private: req.body.lobbyPrivate,
+        private: req.body.lobbyPrivate === "on",
         board:
         {
             width: req.body.boardWidth,
