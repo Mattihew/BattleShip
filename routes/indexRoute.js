@@ -10,7 +10,7 @@ router.get('/', function(req, res, next)
     {
         res.redirect('/lobbys');
     }
-    res.render('index', { title: 'BattleShip', taken: false});
+    res.render('index.ejs', { title: 'BattleShip', taken: false});
 });
 
 router.post('/', function(req, res, next)
@@ -20,11 +20,11 @@ router.post('/', function(req, res, next)
     {
         usernames[username] = true;
         req.session.username = username;
-        res.redirect('lobbys');
+        res.redirect('/lobbys');
     }
     else
     {
-        res.render('index', {title: 'BattleShip', taken: true});
+        res.render('index.ejs', {title: 'BattleShip', taken: true});
     }
 });
 module.exports = router;

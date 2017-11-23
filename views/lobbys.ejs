@@ -4,7 +4,6 @@
         <title><%= title %></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
               integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-        <!--suppress HtmlUnknownTarget -->
         <link rel='stylesheet' href='/stylesheets/style.css'/>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -15,7 +14,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
                 integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
                 crossorigin="anonymous"></script>
-        <!--suppress HtmlUnknownTarget -->
         <script src="javascript/lobby.js"></script>
     </head>
     <body>
@@ -42,9 +40,9 @@
                 </thead>
                 <tbody>
                     <% for (var i = 0; i < lobbys.length; i++) {%>
-                    <tr data-id="<%= lobbys[i].id %>">
-                        <td><%= lobbys[i].name %></td>
-                        <td><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></td>
+                    <tr>
+                        <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].name %></a></td>
+                        <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></a></td>
                     </tr>
                     <% }%>
                 </tbody>

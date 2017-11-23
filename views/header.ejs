@@ -5,7 +5,9 @@
             <a class="nav-link" href="/lobbys">Lobby</a>
         </li>
     </ul>
+    <% if (typeof username !== 'undefined') { %>
     <span class="navbar-text">
         <%= username %>
     </span>
+    <% } %>
 </nav>
