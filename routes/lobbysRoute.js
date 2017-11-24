@@ -13,7 +13,7 @@ router.get('/', function (req, res, next)
 router.post('/', function(req, res, next)
 {
     // noinspection JSUnresolvedVariable
-    lobbyCache.put(
+    var lobbyId = lobbyCache.put(
     {
         name: req.body.lobbyName || req.session.username + "s lobby",
         players: 0,
@@ -25,7 +25,7 @@ router.post('/', function(req, res, next)
             height: req.body.boardHeight
         }
     });
-    res.redirect('/lobbys');
+    res.redirect('/play/' + lobbyId);
 });
 
 module.exports = router;

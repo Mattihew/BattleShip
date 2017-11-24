@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "battleship-187017",
+  "private_key_id": "75c4f021e9a1ba3116ef4494d80603a46076f6a0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDsHF0lz5zYFS17\nQcyRCz0eZxr2bXrjPR8DNzyHp8yR7ZsF9dgexn8Lh1TivxUXNvqc0i2UIk7s7m/J\nRu+tE5HSb0wNvnJ1eYaeqHNx0E3X9bmQklK27JRTUO3HUdFaAvTJZwlzBBdyCjGK\nvpfQb+R+l8jQjETnj4lhx1s0COv/suRu+srgu1tAt3f3zOcPgqmt9rUgRNoTQ+cl\nl8d4je7nNr7Lvvewoh69flrhlEBt3hReYigEgus0Tr5YRRoki7IMYh5UpwC2dP6z\nxGPgTg+KklSeHlz21+w4B1QvNblEeOagD01CSii/SBqdU/nOvfO5tAiKJF6S0GKf\n9fao/cFJAgMBAAECggEALjC6VExSXb9+308XCwUM1ubK0ozGbrAlYgarU8qS7bVz\nD25x8ktYzVOTWqyRHrKFwqoneoRftmBLBDBZcR2T+HwHf+TTFYJJwL4pn4llwSr0\nO4E0p06PEeGSMt0hvJ85bjE3GwYg5BF0cbUplABfzhg5k/rs+/QLp1JN2FcqfCIN\n9SOvpV/D0Zjt2AmmnT4PtTSg/imQCmGPkuE86b83UxIu+EuCnmNdOLnVqJNHaWan\n6B9hfzHmQEt0BKg8BlvvdCyslsnmdnB4P+7PdqEwTt3YfC3G4pLHx+R0QxwkzNk9\nkJHubExmkzNsB142IUP8mAhhoil36FdqjS7uYYnO1QKBgQD4iVCGLu8YA5t9m2r2\nC+yC9DT01bs/TP5vO86YmFFHwI2UzvgGqbaKLf1ltHgyC38/iXSZGcnHzcbvvM1i\nRPEFOvrxCzSa76zykC9UX4lnWd/7QGEb47igtlCBkBCbqggELcj4ygbs1/ruzXug\nBnY8xSbtw0Q6aHQ8YncpToNScwKBgQDzM4ZFjUoh3cAzIN7NtsyLBAc7sWCwCm1x\nmENtO+JMu85Sfcu8QXHO0rt5WeW5v+AsSu25wU2gMR/AY289ECU2JoVVCE3QA/FE\nGWC38BeumT35FWmma+Ig0sGpcB0wwISGKV1K3Gbgx+7XX+dqgV/HKxUMWYNP6uCs\nkV45bT5iUwKBgAOjBsGf6DHCw8C3yH3nOMPFzQyUIBRSDRsVlfVXrUDOiYPW73wx\neZFWEPIvDN82mdsVKNagsPoygam6aor4lUpNTaS/VDq8LRyzjW2/pCQWBZgIniMp\nVudLI6xxrjyI5WsiPGGfmzBWDL731MpHre0/uU0bYWE1bBYCHtpE4tkPAoGAa/vF\ns54fe1gFne4LX5W5zkPUnlmMz71hiN2NmrPLMDz3SENYsdbxHF8PJLuYt9gNRj1i\nvmao++az7W15F8jSbO+/pdjRC/qkJpOKEUHGkhyymqU6Ss1+EwrhOEVygJIKhbNa\nHAIun8HGN9T6YJzfFQT5DIm2N0bXyWemSaNK3scCgYA11609YQjTWfmVRbahZUZ4\noyX6wzLgLNYrSi71txacfSeOL14z8KO4/MiEysMaRlL7furTNAUjpzPdv1E/yFyb\njoKHvofY0HlnMtDOIJ2dPehDpKLgZwZFdNEDpbTt2ryr+g8h8tpNYjzOY6sB/N/x\novrQArJ5JvV39WMdpF4w5w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "battleship-187017@appspot.gserviceaccount.com",
+  "client_id": "104346538640914015752",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/battleship-187017%40appspot.gserviceaccount.com"
+}
