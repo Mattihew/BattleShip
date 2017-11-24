@@ -4,4 +4,4 @@ node_js:
 deploy:
   provider: gae
   keyfile: "private/AE-Battleship.json"
-  project: "Battleship"
+  project: "battleship-187017"
