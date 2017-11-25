@@ -3,14 +3,14 @@ var router = express.Router();
 
 var lobbyCache = require('../models/LobbyCache');
 
-/* GET users listing. */
-router.get('/', function (req, res, next)
+/* GET lobbys listing. */
+router.get('/', function (req, res)
 {
     res.render('lobbys.ejs', {title: 'BattleShip', username: req.session.username, lobbys: lobbyCache.values()});
 });
 
 // noinspection JSUnresolvedFunction
-router.post('/', function(req, res, next)
+router.post('/', function(req, res)
 {
     // noinspection JSUnresolvedVariable
     var lobbyId = lobbyCache.put(
@@ -26,6 +26,12 @@ router.post('/', function(req, res, next)
         }
     });
     res.redirect('/play/' + lobbyId);
+});
+
+router.delete('/:id', function(req, res)
+{
+    lobbyCache.remove(req.param('id'));
+    res.sendStatus(204);
 });
 
 module.exports = router;

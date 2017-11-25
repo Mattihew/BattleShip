@@ -24,7 +24,7 @@ button
     cursor: pointer;
 }
 
-table tr:hover a
+table tr:hover a:not(.btn)
 {
     text-decoration: underline;
 }

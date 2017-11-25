@@ -1,8 +1,15 @@
 $(document).ready(function()
 {
-    $("tr[data-id]").click(function()
+    $("button[data-action='delete']").click(function()
     {
-        var url = '/play/' + $(this).attr('data-id');
-        $(location).attr('href', url);
-    })
+        var button = $(this);
+        $.ajax('/lobbys/' + button.attr('data-id'),
+        {
+            type: 'DELETE',
+            success: function(result, status)
+            {
+                button.parents('tr').remove();
+            }
+        });
+    });
 });

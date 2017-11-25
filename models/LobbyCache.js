@@ -23,5 +23,9 @@ module.exports =
         }
         lobbys[lobby.id] = lobby;
         return lobby.id;
+    },
+    remove: function(id)
+    {
+        delete lobbys[id];
     }
 };
