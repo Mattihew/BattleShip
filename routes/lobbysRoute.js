@@ -16,7 +16,6 @@ router.post('/', function(req, res)
     var lobbyId = lobbyCache.put(
     {
         name: req.body.lobbyName || req.session.username + "s lobby",
-        players: 0,
         maxPlayers: req.body.lobbyMaxPlayers,
         private: req.body.lobbyPrivate === "on",
         board:
