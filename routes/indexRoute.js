@@ -10,7 +10,7 @@ router.get('/', function(req, res, next)
     {
         res.redirect('/lobbys');
     }
-    res.render('index.ejs', { title: 'BattleShip', taken: false});
+    res.render('index.ejs', {taken: false});
 });
 
 router.post('/', function(req, res, next)
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next)
     }
     else
     {
-        res.render('index.ejs', {title: 'BattleShip', taken: true});
+        res.render('index.ejs', {taken: true});
     }
 });
 module.exports = router;
