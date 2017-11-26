@@ -12,14 +12,17 @@ var init = function(lobby)
         lobby.id = generateID();
     }
     lobby.players = 0;
-    lobby.board.avalibleShips =
-    [
-        {name: 'Carrier', size: 5, count: 1},
-        {name: 'Battleship', size: 4, count: 1},
-        {name: 'Cruiser', size: 3, count: 1},
-        {name: 'Submarine', size: 3, count: 1},
-        {name: 'Destroyer', size: 2, count: 1}
-    ];
+    if (typeof lobby.board !== 'undefined')
+    {
+        lobby.board.avalibleShips =
+            [
+                {name: 'Carrier', size: 5, count: 1},
+                {name: 'Battleship', size: 4, count: 1},
+                {name: 'Cruiser', size: 3, count: 1},
+                {name: 'Submarine', size: 3, count: 1},
+                {name: 'Destroyer', size: 2, count: 1}
+            ];
+    }
 };
 
 module.exports =
