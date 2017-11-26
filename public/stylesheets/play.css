@@ -1,4 +1,9 @@
-td:hover
+table.board.active td:hover
 {
     background-color: #eee;
+    cursor: pointer;
+}
+table.ship-list tbody
+{
+    cursor: pointer;
 }

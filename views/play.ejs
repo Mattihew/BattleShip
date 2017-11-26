@@ -15,12 +15,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
+    <script src="/javascript/play.js"></script>
 </head>
 <body>
     <div class="container">
         <% include header.ejs %>
         <div class="row">
-            <table class="table table-bordered">
+            <table class="table table-bordered board">
                 <% for (var i = 0; i < board.height; i++){%>
                 <tr>
                     <% for (var j = 0; j < board.width; j++){%>
