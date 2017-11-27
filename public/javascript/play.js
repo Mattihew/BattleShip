@@ -9,10 +9,10 @@ var play =
             var element = $(element);
             element.click(function()
             {
-                var selected = $(this).hasClass('selected');
+                var selected = !$(this).hasClass('selected');
                 $('table.ship-list tbody tr').removeClass('selected table-active');
-                $(this).toggleClass('selected table-active', !selected);
-                play.shipSelected(selected ? null : play.ships[index]);
+                $(this).toggleClass('selected table-active', selected);
+                play.shipSelected(selected ? play.ships[index] : null);
             });
             var children = element.children();
             play.ships.push(
