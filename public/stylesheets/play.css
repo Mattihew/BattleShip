@@ -1,7 +1,17 @@
+table.board
+{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
 table.board.active td:hover
 {
     background-color: #eee;
     cursor: pointer;
+}
+table.board td.ship
+{
+    background-color: #ddd;
 }
 table.ship-list tbody
 {
