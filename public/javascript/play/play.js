@@ -46,25 +46,33 @@ var play =
             var oldPos = play.selectedShip.getPos();
             var oldDir = play.selectedShip.getDir();
             var oldCoords = play.selectedShip.getCoords();
-            if (coord.equals(play.selectedShip.getPos()))
+
+            if (!coord.equals(play.selectedShip.getPos()))
             {
-                play.selectedShip.offsetDir(1);
+                play.selectedShip.setPos(coord);
             }
             else
             {
-                play.selectedShip.setPos(coord);
+                do
+                {
+                    play.selectedShip.offsetDir(1);
+                }while(
+                    play.conflicts(play.selectedShip.getCoords(), play.selectedShip)
+                    && play.selectedShip.getDir() !== oldDir);
+
             }
 
             if (!play.conflicts(play.selectedShip.getCoords(), play.selectedShip))
             {
                 oldCoords.forEach(function(coord)
                 {
-                    $('table.board tbody tr:nth-child('+ (coord.y+1) + ') td:nth-child(' + (coord.x+1) + ')').removeClass('ship');
+                    play.getElement(coord).removeClass('ship shipStart');
                 });
                 play.selectedShip.getCoords().forEach(function(coord)
                 {
-                    $('table.board tbody tr:nth-child('+ (coord.y+1) + ') td:nth-child(' + (coord.x+1) + ')').addClass('ship');
+                    play.getElement(coord).addClass('ship');
                 });
+                play.getElement(play.selectedShip.getPos()).addClass('shipStart');
             }
             else
             {
@@ -73,20 +81,33 @@ var play =
             }
         }
     },
+    getElement: function(x, y)
+    {
+        var coord = new Coord(x, y);
+        if (coord.insideRect(play.board.width, play.board.height))
+        {
+            return $('table.board tbody tr:nth-child('+ (coord.y+1) + ') td:nth-child(' + (coord.x+1) + ')');
+        }
+        return $(null);
+    },
     conflicts: function(coords, except)
     {
-        return play.ships.some(function(ship)
+        return coords.some(function (coord)
         {
-            if (ship !== except)
+            if (!coord.insideRect(play.board.width, play.board.height))
             {
-                return ship.getCoords().some(function (shipCoords)
+                return true;
+            }
+            return play.ships.some(function(ship)
+            {
+                if (ship !== except)
                 {
-                    return coords.some(function (coord)
+                    return ship.getCoords().some(function (shipCoords)
                     {
                         return coord.equals(shipCoords);
                     });
-                });
-            }
+                }
+            });
         });
     }
 };

@@ -1,7 +1,7 @@
 function Coord(x, y)
 {
-    var posX = x.x ? x.x : x;
-    var posY = x.y ? x.y : y;
+    var posX = typeof x === 'object' ? x.x : x;
+    var posY = typeof x === 'object' ? x.y : y;
     return {
         x: posX,
         y: posY,
@@ -23,6 +23,12 @@ function Coord(x, y)
                 coord.y = y;
             }
             return new Coord(posX + coord.x, posY + coord.y)
+        },
+        insideRect: function(width, height, x, y)
+        {
+            x = x || 0;
+            y = y || 0;
+            return (posX >= x && posY >= y && posX < width && posY < height)
         }
     }
 }
