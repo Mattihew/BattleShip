@@ -9,30 +9,33 @@ function Ship(name, size)
     var calculateCoords = function()
     {
         coords = [];
-        for (var i = 0; i < shipSize; i++)
+        if (typeof pos.x !== 'undefined')
         {
-            switch(dir)
+            for (var i = 0; i < shipSize; i++)
             {
-                case 0:
-                    coords.push(pos.offset(0, -i));
-                    break;
-                case 1:
-                    coords.push(pos.offset(i, 0));
-                    break;
-                case 2:
-                    coords.push(pos.offset(0, i));
-                    break;
-                case 3:
-                    coords.push(pos.offset(-i, 0));
+                switch (dir)
+                {
+                    case 0:
+                        coords.push(pos.offset(0, -i));
+                        break;
+                    case 1:
+                        coords.push(pos.offset(i, 0));
+                        break;
+                    case 2:
+                        coords.push(pos.offset(0, i));
+                        break;
+                    case 3:
+                        coords.push(pos.offset(-i, 0));
+                }
             }
         }
         return coords;
     };
-    var notify = function()
+    var notify = function(event)
     {
         observers.forEach(function (obs)
         {
-            obs(this);
+            obs(event, this);
         });
     };
     return {
@@ -46,9 +49,10 @@ function Ship(name, size)
         },
         setPos: function(coord)
         {
+            var oldPos = pos;
             pos = coord;
             calculateCoords();
-            notify();
+            notify({prop: 'pos', old: oldPos, new: coord});
         },
         getPos: function()
         {
@@ -56,9 +60,10 @@ function Ship(name, size)
         },
         setDir: function(newDir)
         {
+            var oldDir = dir;
             dir = newDir;
             calculateCoords();
-            notify();
+            notify({prop: 'dir', old: oldDir, new: newDir});
         },
         getDir: function()
         {
@@ -66,10 +71,12 @@ function Ship(name, size)
         },
         offsetDir: function(offset)
         {
+            var oldDir = dir;
             dir += offset;
             dir %= 4;
             calculateCoords();
-            notify();
+            notify({prop: 'dir', old: oldDir, new: dir});
+            return dir;
         },
         getCoords: function()
         {

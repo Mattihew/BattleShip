@@ -11,17 +11,7 @@ function Coord(x, y)
         },
         offset: function (x, y)
         {
-            var coord = {};
-            if (x.x)
-            {
-                coord.x = x.x;
-                coord.y = x.y;
-            }
-            else
-            {
-                coord.x = x;
-                coord.y = y;
-            }
+            var coord = new Coord(x, y);
             return new Coord(posX + coord.x, posY + coord.y)
         },
         insideRect: function(width, height, x, y)

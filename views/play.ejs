@@ -27,7 +27,7 @@
                 <% for (var i = 0; i < board.height; i++){%>
                 <tr>
                     <% for (var j = 0; j < board.width; j++){%>
-                    <td data-x="<%=j%>" data-y="<%=i%>">&nbsp;</td>
+                    <td style="width: <%=90/board.width%>vmin; height: <%=90/board.width%>vmin" data-x="<%=j%>" data-y="<%=i%>">&nbsp;</td>
                     <%}%>
                 </tr>
                 <%}%>
@@ -38,18 +38,21 @@
                 <thead>
                     <th>Class</th>
                     <th>Size</th>
-                    <th>Quantity</th>
                 </thead>
                 <tbody>
                 <%for (var i = 0; i < board.avalibleShips.length; i++) {%>
+                    <%for (var j = 0; j < board.avalibleShips[i].count; j++) {%>
                     <tr>
                         <td><%=board.avalibleShips[i].name%></td>
                         <td><%=board.avalibleShips[i].size%></td>
-                        <td><%=board.avalibleShips[i].count%></td>
                     </tr>
+                    <%}%>
                 <%}%>
                 </tbody>
             </table>
+        </div>
+        <div class="row">
+            <button disabled class="btn btn-success">Submit</button>
         </div>
     </div>
 </body>

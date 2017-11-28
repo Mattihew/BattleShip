@@ -16,12 +16,23 @@ var play =
                 play.shipSelected(selected ? play.ships[index] : null);
             });
             var children = element.children();
-            var count = Number($(children.get(2)).text());
-            for (var i = 0; i<count; i++)
+            var ship = new Ship($(children.get(0)).text(), Number($(children.get(1)).text()));
+            ship.addObserver(function(event)
             {
-                var ship = new Ship($(children.get(0)).text(), Number($(children.get(1)).text()));
-                play.ships.push(ship);
-            }
+                if(event.prop === 'pos')
+                {
+                    if(typeof event.old.x === 'undefined')
+                    {
+                        element.addClass('table-success');
+                    }
+                    else if(typeof event.new.x === 'undefined')
+                    {
+                        element.removeClass('table-success');
+                    }
+                }
+            });
+            play.ships.push(ship);
+
         });
         play.board.height = $('table.board tbody tr').length;
         play.board.width = $('table.board tbody tr:first td').length;
@@ -50,6 +61,15 @@ var play =
             if (!coord.equals(play.selectedShip.getPos()))
             {
                 play.selectedShip.setPos(coord);
+                if(play.conflicts(play.selectedShip.getCoords(), play.selectedShip))
+                {
+                    do
+                    {
+                        play.selectedShip.offsetDir(1);
+                    } while (
+                        play.conflicts(play.selectedShip.getCoords(), play.selectedShip)
+                        && play.selectedShip.getDir() !== oldDir);
+                }
             }
             else
             {
@@ -66,13 +86,13 @@ var play =
             {
                 oldCoords.forEach(function(coord)
                 {
-                    play.getElement(coord).removeClass('ship shipStart');
+                    play.getElement(coord).removeClass('ship shipStart').text('');
                 });
                 play.selectedShip.getCoords().forEach(function(coord)
                 {
                     play.getElement(coord).addClass('ship');
                 });
-                play.getElement(play.selectedShip.getPos()).addClass('shipStart');
+                play.getElement(play.selectedShip.getPos()).addClass('shipStart').text(play.selectedShip.name().substr(0,3));
             }
             else
             {
