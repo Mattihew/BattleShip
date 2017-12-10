@@ -18,7 +18,14 @@ function Coord(x, y)
         {
             x = x || 0;
             y = y || 0;
-            return (posX >= x && posY >= y && posX < width && posY < height)
+            return (posX >= x && posY >= y && posX < x + width && posY < y + height)
+        },
+        toJSON: function()
+        {
+            return {
+                x: posX,
+                y: posY
+            };
         }
     }
 }

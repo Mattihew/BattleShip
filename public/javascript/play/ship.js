@@ -82,6 +82,15 @@ function Ship(name, size)
         {
             return coords;
         },
+        toJSON: function()
+        {
+            return {
+                name: shipName,
+                size: shipSize,
+                pos: pos.toJSON(),
+                dir: dir
+            };
+        },
         addObserver: function(observer)
         {
             observers.push(observer);

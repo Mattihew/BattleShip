@@ -29,6 +29,10 @@ var play =
                     {
                         element.removeClass('table-success');
                     }
+                    $('#btn-submit').prop('disabled', play.ships.some(function(ship)
+                    {
+                        return typeof ship.getPos().x === 'undefined';
+                    }));
                 }
             });
             play.ships.push(ship);
@@ -42,6 +46,21 @@ var play =
             var x = element.data('x');
             var y = element.data('y');
             play.cellSelected(x, y, element);
+        });
+        $('#btn-submit').click(function(event)
+        {
+            var data =
+            {
+                ships: play.ships.map(function(ship)
+                {
+                    return ship.toJSON();
+                })
+            };
+
+            $.post('', data, function(data)
+            {
+
+            });
         });
     },
     shipSelected: function(ship)
