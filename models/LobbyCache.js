@@ -24,6 +24,7 @@ module.exports =
 
 function Lobby(options)
 {
+    options = options || {board: {}};
     var name = options.name;
     var maxPlayers = Number(options.maxPlayers);
     var players = 0;

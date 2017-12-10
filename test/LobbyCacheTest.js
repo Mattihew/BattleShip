@@ -6,9 +6,8 @@ describe('LobbyCache', function()
     {
         it('should return array of all lobbys in cache', function()
         {
-            var lobby = {test: 'test'};
-            var id = lobbyCache.put(lobby);
-            assert.equal(lobby, lobbyCache.values()[0]);
+            var id = lobbyCache.put();
+            assert.equal(id, lobbyCache.values()[0].id);
             lobbyCache.remove(id);
         });
     });
