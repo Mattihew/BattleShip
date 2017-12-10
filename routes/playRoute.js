@@ -8,14 +8,25 @@ router.get('/:lobbyId', function(req, res)
 {
     var lobbyId = req.param('lobbyId');
     var lobby = lobbyCache.get(lobbyId);
-    res.render('play.ejs', {username: req.session.username, board: lobby.board });
+    res.render('play.ejs',
+    {
+        username: req.session.username,
+        board: lobby.board,
+        team: lobby.getPlayerTeam(req.session.username)
+    });
 });
 
 router.post('/:lobbyId', function(req, res)
 {
     var lobbyId = req.param('lobbyId');
     var lobby = lobbyCache.get(lobbyId);
-    lobby.ships = req.body.ships
+    var team = lobby.getPlayerTeam(req.session.username);
+    if (typeof team === 'undefined')
+    {
+        team = lobby.getTeam();
+        team.players.push(req.session.username);
+    }
+    team.ships = req.body.ships;
 });
 
 module.exports = router;

@@ -44,7 +44,7 @@
                     if (!lobbys[i].private) {%>
                         <tr>
                             <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].name %></a></td>
-                            <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].players%>/<%= lobbys[i].maxPlayers %></a></td>
+                            <td class="p-0"><a class="d-block p-2 text-dark" href="/play/<%=lobbys[i].id%>"><%= lobbys[i].getPlayerCount()%>/<%= lobbys[i].maxPlayers %></a></td>
                             <td class="p-0">
                                 <div class="btn-group btn-group-sm w-100" role="group">
                                     <a role="button" href="/play/<%=lobbys[i].id%>" class="btn btn-success btn-sm btn-block mt-0">Join</a>

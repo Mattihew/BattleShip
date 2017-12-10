@@ -1,30 +1,5 @@
 var lobbys = {};
 
-var generateID = function()
-{
-    return Math.random().toString(36).substr(2);
-};
-
-var init = function(lobby)
-{
-    if (typeof lobby.id === 'undefined')
-    {
-        lobby.id = generateID();
-    }
-    lobby.players = 0;
-    if (typeof lobby.board !== 'undefined')
-    {
-        lobby.board.avalibleShips =
-            [
-                {name: 'Carrier', size: 5, count: 1},
-                {name: 'Battleship', size: 4, count: 1},
-                {name: 'Cruiser', size: 3, count: 1},
-                {name: 'Submarine', size: 3, count: 1},
-                {name: 'Destroyer', size: 2, count: 1}
-            ];
-    }
-};
-
 module.exports =
 {
     values: function()
@@ -35,9 +10,9 @@ module.exports =
     {
         return lobbys[id];
     },
-    put: function(lobby)
+    put: function(options)
     {
-        init(lobby);
+        var lobby = new Lobby(options);
         lobbys[lobby.id] = lobby;
         return lobby.id;
     },
@@ -46,3 +21,75 @@ module.exports =
         delete lobbys[id];
     }
 };
+
+function Lobby(options)
+{
+    var name = options.name;
+    var maxPlayers = Number(options.maxPlayers);
+    var players = 0;
+    var private = Boolean(options.private);
+    var teams = [];
+    var board =
+    {
+        width: options.board.width || 10,
+        height: options.board.height || 10,
+        availableShips:
+        [
+            {name: 'Carrier', size: 5, count: 1},
+            {name: 'Battleship', size: 4, count: 1},
+            {name: 'Cruiser', size: 3, count: 1},
+            {name: 'Submarine', size: 3, count: 1},
+            {name: 'Destroyer', size: 2, count: 1}
+        ]
+    };
+    var id = options.id;
+    if (typeof id === 'undefined')
+    {
+        id = Math.random().toString(36).substr(2);
+    }
+    return {
+        name: name,
+        maxPlayers: maxPlayers,
+        private: private,
+        board: board,
+        id: id,
+        getPlayerCount: function()
+        {
+            return teams.length;
+        },
+        getTeam: function(teamIndex)
+        {
+            var index;
+            if (typeof teamIndex === 'undefined')
+            {
+                index = teams.length;
+            }
+            else if (teamIndex > 2)
+            {
+                index = 2;
+            }
+            else
+            {
+                index = teamIndex;
+            }
+
+            if (teams.length > index)
+            {
+                return teams[index];
+            }
+            else
+            {
+                var team = {players: []};
+                teams[index] = team;
+                return team;
+            }
+        },
+        getPlayerTeam: function(player)
+        {
+            return teams.find(function(team)
+            {
+                return team.players.includes(player);
+            });
+        }
+    };
+}
