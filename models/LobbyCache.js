@@ -26,7 +26,7 @@ function Lobby(options)
 {
     options = options || {board: {}};
     var name = options.name;
-    var maxPlayers = Number(options.maxPlayers);
+    var maxPlayers = Number(options.maxPlayers || 2);
     var players = 0;
     var private = Boolean(options.private);
     var teams = [];
@@ -80,7 +80,7 @@ function Lobby(options)
             }
             else
             {
-                var team = {players: []};
+                var team = new Team();
                 teams[index] = team;
                 return team;
             }
@@ -93,4 +93,49 @@ function Lobby(options)
             });
         }
     };
+}
+function Team(players, ships)
+{
+    players = players || [];
+    return {
+        players: players,
+        ships: ships,
+        getShipAt: function(x, y)
+        {
+            return this.ships.find(function(ship)
+            {
+                var pos = ship.pos;
+                for (var i = 0; i < ship.size; i++)
+                {
+                    switch (ship.dir)
+                    {
+                        case "0":
+                            if(x === Number(pos.x) && y === Number(pos.y) - i)
+                            {
+                                return true;
+                            }
+                            break;
+                        case "1":
+                            if(x === Number(pos.x) + i && y === Number(pos.y))
+                            {
+                                return true;
+                            }
+                            break;
+                        case "2":
+                            if(x === Number(pos.x) && y === Number(pos.y) + i)
+                            {
+                                return true;
+                            }
+                            break;
+                        case "3":
+                            if(x === Number(pos.x) - i && y === Number(pos.y))
+                            {
+                                return true;
+                            }
+                    }
+                }
+                return false;
+            });
+        }
+    }
 }

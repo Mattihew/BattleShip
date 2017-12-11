@@ -8,11 +8,23 @@ router.get('/:lobbyId', function(req, res)
 {
     var lobbyId = req.param('lobbyId');
     var lobby = lobbyCache.get(lobbyId);
+    var team = lobby.getPlayerTeam(req.session.username);
     res.render('play.ejs',
     {
         username: req.session.username,
         board: lobby.board,
-        team: lobby.getPlayerTeam(req.session.username)
+        team: team,
+        getClassAt: function(x, y)
+        {
+            if (typeof team !== 'undefined')
+            {
+                var ship = team.getShipAt(x, y);
+                if (typeof ship !== 'undefined')
+                {
+                    return 'ship';
+                }
+            }
+        }
     });
 });
 

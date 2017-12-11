@@ -3,6 +3,7 @@ table.board
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+    background-color: lightskyblue;
 }
 table.board.active td:hover
 {
