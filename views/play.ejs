@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
-    <script src="/javascript/play/play.js"></script>
+    <script src="/javascript/play/play-setup.js"></script>
     <script src="/javascript/play/ship.js"></script>
     <script src="/javascript/play/coord.js"></script>
     <!--suppress HtmlUnknownTarget -->
@@ -25,7 +25,7 @@
     <div class="container">
         <% include header.ejs %>
         <div class="row">
-            <div>
+            <div class="col-sm-12 col-lg-10">
             <table class="table table-bordered board">
                 <% for (var i = 0; i < board.height; i++){%>
                 <tr>
@@ -41,26 +41,30 @@
             </table>
             </div>
             <%if (typeof team === 'undefined') {%>
-            <div class="row">
-                <table class="table table-bordered table-hover ship-list">
-                    <thead>
-                        <th>Class</th>
-                        <th>Size</th>
-                    </thead>
-                    <tbody>
-                    <%for (var i = 0; i < board.availableShips.length; i++) {%>
-                        <%for (var j = 0; j < board.availableShips[i].count; j++) {%>
-                        <tr>
-                            <td><%=board.availableShips[i].name%></td>
-                            <td><%=board.availableShips[i].size%></td>
-                        </tr>
+            <div class="col-sm-12 col-lg-2">
+                <div clas="row">
+                    <table class="table table-bordered table-hover ship-list">
+                        <thead>
+                            <th>Class</th>
+                            <th>Size</th>
+                        </thead>
+                        <tbody>
+                        <%for (var i = 0; i < board.availableShips.length; i++) {%>
+                            <%for (var j = 0; j < board.availableShips[i].count; j++) {%>
+                            <tr>
+                                <td><%=board.availableShips[i].name%></td>
+                                <td><%=board.availableShips[i].size%></td>
+                            </tr>
+                            <%}%>
                         <%}%>
-                    <%}%>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <button id="btn-submit" disabled class="btn btn-success">Submit</button>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button id="btn-submit" disabled class="btn btn-success">Submit</button>
+                    </div>
+                </div>
             </div>
             <% } %>
         </div>
