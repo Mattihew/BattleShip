@@ -57,7 +57,10 @@ var play =
                 })
             };
 
-            $.post('', data);
+            $.post('', data, function(data, status)
+            {
+                location.reload();
+            });
         });
     },
     shipSelected: function(ship)
@@ -147,7 +150,4 @@ var play =
         });
     }
 };
-$(document).ready(function()
-{
-    play.init();
-});
+$(play.init);

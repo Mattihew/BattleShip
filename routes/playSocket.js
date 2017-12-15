@@ -3,7 +3,7 @@ var io;
 
 module.exports = function(server)
 {
-    io = socket.listen(server, {path: '/playSocket'});
+    io = socket.listen(server);
 
     io.on('connection', function(socket)
     {

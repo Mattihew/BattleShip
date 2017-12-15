@@ -3,7 +3,6 @@ var router = express.Router();
 
 var lobbyCache = require('../models/LobbyCache');
 
-/* GET home page. */
 router.get('/:lobbyId', function(req, res)
 {
     var lobbyId = req.param('lobbyId');
@@ -39,6 +38,7 @@ router.post('/:lobbyId', function(req, res)
         team.players.push(req.session.username);
     }
     team.ships = req.body.ships;
+    res.sendStatus(204)
 });
 
 module.exports = router;

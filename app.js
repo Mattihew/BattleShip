@@ -28,7 +28,8 @@ app.use(session(
     secret: 'Matts Battleship',
     cookie:
     {
-        httpOnly: false
+        httpOnly: false,
+        maxAge: 3600000
     }
 }));
 

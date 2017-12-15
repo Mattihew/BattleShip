@@ -16,9 +16,9 @@ router.get('/', function(req, res, next)
 router.post('/', function(req, res, next)
 {
     var username = req.body.username;
-    if (!usernames.hasOwnProperty(username))
+    if (!usernames.hasOwnProperty(username) || usernames[username] + 3600000 < Date.now())
     {
-        usernames[username] = true;
+        usernames[username] = Date.now();
         req.session.username = username;
         res.redirect('/lobbys');
     }
