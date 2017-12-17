@@ -1,18 +1,19 @@
 var socket = require('socket.io');
+var lobbyCache = require('../models/LobbyCache');
 var io;
 
-module.exports = function(server)
+module.exports = function(server, middleware)
 {
     io = socket.listen(server);
-
+    io.use(middleware);
     io.on('connection', function(socket)
     {
-        console.log('connected');
-        socket.on('message', function(data)
+        var lobby;
+        socket.on('join', function(data)
         {
-            console.log(data);
+            socket.join(data);
+            lobby = lobbyCache.get(data);
         })
     });
-
     return io;
 };

@@ -23,15 +23,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session(
+
+var sessionMiddleware = session(
 {
     secret: 'Matts Battleship',
     cookie:
-    {
-        httpOnly: false,
-        maxAge: 3600000
-    }
-}));
+        {
+            httpOnly: false,
+            maxAge: 3600000
+        }
+});
+app.use(sessionMiddleware);
+app.set('sessionMiddleware', sessionMiddleware);
+
+app.use(function(req, res, next)
+{
+    res.locals.username = req.session.username;
+    next();
+});
 
 app.use('/', index);
 app.use('/lobbys', lobbys);
