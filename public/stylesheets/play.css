@@ -10,7 +10,7 @@ table.board.active td:hover
     background-color: #eee;
     cursor: pointer;
 }
-table.board td.ship
+table.board:not(.enemy-board) td.ship
 {
     background-color: #ddd;
 }
@@ -19,6 +19,10 @@ table.board td.shipStart
     background-color: #ccc;
 }
 table.ship-list tbody
+{
+    cursor: pointer;
+}
+ul.nav-tabs a
 {
     cursor: pointer;
 }

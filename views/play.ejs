@@ -33,19 +33,29 @@
         <% include header.ejs %>
         <div class="row">
             <div class="col-sm-12 col-lg-10">
-            <table class="table table-bordered board">
-                <% for (var i = 0; i < board.height; i++){%>
-                <tr>
-                    <% for (var j = 0; j < board.width; j++){%>
-                    <td
-                            style="width: <%=90/board.width%>vmin; height: <%=90/board.width%>vmin"
-                            class="<%=getClassAt(j,i)%>"
-                            data-x="<%=j%>"
-                            data-y="<%=i%>">&nbsp;</td>
+                <ul class="nav nav-tabs">
+                    <%if (typeof team !== 'undefined') {%>
+                    <li class="nav-item">
+                        <a class="nav-link active">Enemy Board</a>
+                    </li>
                     <%}%>
-                </tr>
-                <%}%>
-            </table>
+                    <li class="nav-item">
+                        <a class="nav-link <%=typeof team === 'undefined'?'active':''%>">Your Board</a>
+                    </li>
+                </ul>
+                <table class="table table-bordered board<%=typeof team === 'undefined'?'':' enemy-board'%>">
+                    <% for (var i = 0; i < board.height; i++){%>
+                    <tr>
+                        <% for (var j = 0; j < board.width; j++){%>
+                        <td
+                                style="width: <%=90/board.width%>vmin; height: <%=90/board.width%>vmin"
+                                class="<%=getClassAt(j,i)%>"
+                                data-x="<%=j%>"
+                                data-y="<%=i%>">&nbsp;</td>
+                        <%}%>
+                    </tr>
+                    <%}%>
+                </table>
             </div>
             <%if (typeof team === 'undefined') {%>
             <div class="col-sm-12 col-lg-2">
