@@ -11,8 +11,13 @@ module.exports = function(server, middleware)
         var lobby;
         socket.on('join', function(data)
         {
-            socket.join(data);
             lobby = lobbyCache.get(data);
+            var index = lobby.getPlayerTeamIndex(socket.request.session.username);
+            if (index >= 0)
+            {
+                socket.emit('ready', index === 0);
+                socket.join(data);
+            }
         })
     });
     return io;

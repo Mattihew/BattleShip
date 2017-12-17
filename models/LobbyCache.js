@@ -91,6 +91,13 @@ function Lobby(options)
             {
                 return team.players.includes(player);
             });
+        },
+        getPlayerTeamIndex: function(player)
+        {
+            return teams.findIndex(function(team)
+            {
+                return team.players.includes(player);
+            });
         }
     };
 }

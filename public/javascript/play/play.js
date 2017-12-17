@@ -12,8 +12,12 @@ var play =
         const socket = io();
         socket.on('connect', function()
         {
-            console.log(socket.id);
-        })
+            socket.emit('join', window.location.pathname.split('/')[2]);
+        });
+        socket.on('ready', function(data)
+        {
+            console.log(data);
+        });
     }
 };
 $(play.init);
