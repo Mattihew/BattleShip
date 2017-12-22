@@ -46,7 +46,10 @@ function Lobby(options)
     var id = options.id;
     if (typeof id === 'undefined')
     {
-        id = Math.random().toString(36).substr(2);
+        do
+        {
+            id = Math.random().toString(36).substr(2);
+        }while(typeof lobbys[id] !== 'undefined');
     }
     return {
         name: name,

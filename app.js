@@ -16,8 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +37,12 @@ app.set('sessionMiddleware', sessionMiddleware);
 
 app.use(function(req, res, next)
 {
+    if (typeof req.session.username === 'undefined' && typeof req.session.originalUrl === 'undefined')
+    {
+        req.session.originalUrl = req.url;
+        res.redirect('/login');
+        return;
+    }
     res.locals.username = req.session.username;
     next();
 });
