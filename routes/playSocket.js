@@ -13,25 +13,29 @@ module.exports = function(server, middleware)
         socket.on('join', function(data)
         {
             lobby = lobbyCache.get(data);
-            teamIndex = lobby.getPlayerTeamIndex(socket.request.session.username);
-            if (teamIndex >= 0)
+            if (typeof lobby !== 'undefined')
             {
-                socket.emit('ready', teamIndex === 0);
-                socket.join(data);
+                teamIndex = lobby.getPlayerTeamIndex(socket.request.session.username);
+                lobby.activeTeam = lobby.activeTeam || teamIndex;
+                if (teamIndex >= 0)
+                {
+                    var ready = teamIndex === lobby.activeTeam && lobby.getTeamCount() > 1;
+                    socket.emit('ready', ready);
+                    socket.join(data);
+                    socket.to(data).emit('ready', !ready);
+                }
             }
         });
         socket.on('select', function(data, callback)
         {
-            if(typeof lobby.getTeam(teamIndex ^ 1).getShipAt(data.x, data.y) !== 'undefined')
+            if (lobby.activeTeam === teamIndex)
             {
-                callback(true);
+                var otherTeamIndex = teamIndex ^ 1;
+                callback(typeof lobby.getTeam(otherTeamIndex).getShipAt(data.x, data.y) !== 'undefined');
+                socket.emit('ready', false);
+                socket.to(lobby.id).emit('ready', true);
+                lobby.activeTeam = lobby.activeTeam ^ 1;
             }
-            else
-            {
-                callback(false);
-            }
-            socket.emit('ready', false);
-            socket.to(lobby.id).emit('ready', true);
         });
     });
     return io;

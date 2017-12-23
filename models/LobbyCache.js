@@ -61,6 +61,10 @@ function Lobby(options)
         {
             return teams.length;
         },
+        getTeamCount: function()
+        {
+            return teams.length;
+        },
         getTeam: function(teamIndex)
         {
             var index;

@@ -7,6 +7,10 @@ router.get('/:lobbyId', function(req, res)
 {
     var lobbyId = req.param('lobbyId');
     var lobby = lobbyCache.get(lobbyId);
+    if (typeof lobby === 'undefined')
+    {
+        res.redirect('/lobbys');
+    }
     var team = lobby.getPlayerTeam(req.session.username);
     res.render('play.ejs',
     {

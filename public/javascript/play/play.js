@@ -20,22 +20,25 @@ var play =
             board.toggleClass('active', data);
             board.toggleClass('disabled', !data);
         });
-        $('table.board.enemy-board td').click(function()
+        $('table.board td').click(function()
         {
             var cell = $(this);
             var x = cell.data('x');
             var y = cell.data('y');
-            socket.emit('select', {x: x, y: y}, function(data)
+            if (cell.parents('table').hasClass('enemy-board'))
             {
-                if(data)
+                socket.emit('select', {x: x, y: y}, function(data)
                 {
-                    cell.addClass('hit');
-                }
-                else
-                {
-                    cell.addClass('miss');
-                }
-            });
+                    if(data)
+                    {
+                        cell.addClass('hit');
+                    }
+                    else
+                    {
+                        cell.addClass('miss');
+                    }
+                });
+            }
         });
     }
 };
