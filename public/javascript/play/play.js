@@ -16,7 +16,26 @@ var play =
         });
         socket.on('ready', function(data)
         {
-            console.log(data);
+            var board = $('table.board');
+            board.toggleClass('active', data);
+            board.toggleClass('disabled', !data);
+        });
+        $('table.board.enemy-board td').click(function()
+        {
+            var cell = $(this);
+            var x = cell.data('x');
+            var y = cell.data('y');
+            socket.emit('select', {x: x, y: y}, function(data)
+            {
+                if(data)
+                {
+                    cell.addClass('hit');
+                }
+                else
+                {
+                    cell.addClass('miss');
+                }
+            });
         });
     }
 };

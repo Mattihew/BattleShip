@@ -5,10 +5,13 @@ table.board
     -webkit-user-select: none;
     background-color: lightskyblue;
 }
+table.board.active
+{
+    cursor: pointer;
+}
 table.board.active td:hover
 {
     background-color: #eee;
-    cursor: pointer;
 }
 table.board:not(.enemy-board) td.ship
 {
@@ -17,6 +20,18 @@ table.board:not(.enemy-board) td.ship
 table.board td.shipStart
 {
     background-color: #ccc;
+}
+table.board.enemy-board.disabled, table.board.enemy-board[disabled]
+{
+    background-color: lightsteelblue;
+}
+table.board.enemy-board td.hit
+{
+    background-color: red;
+}
+table.board.enemy-board td.miss
+{
+    background-color: white;
 }
 table.ship-list tbody
 {
