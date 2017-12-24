@@ -12,7 +12,33 @@ var play =
         const socket = io();
         socket.on('connect', function()
         {
-            socket.emit('join', window.location.pathname.split('/')[2]);
+            socket.emit('join', window.location.pathname.split('/')[2], function(existingHits)
+            {
+                existingHits.hits.forEach(function(ship)
+                {
+                    if (Array.isArray(ship))
+                    {
+                        ship.forEach(function(hit)
+                        {
+                            var element = $($('table.board tr').get(hit.y)).children('td').get(hit.x);
+                            $(element).addClass('hit');
+                        });
+                    }
+                });
+                if (Array.isArray(existingHits.misses))
+                {
+                    existingHits.misses.forEach(function(miss)
+                    {
+                        var element = $($('table.board tr').get(miss.y)).children('td').get(miss.x);
+                        $(element).addClass('miss');
+                    });
+                }
+            });
+        });
+        socket.on('joined', function(playerName)
+        {
+            console.log('player "' + playerName + '" has joined');
+            //todo display to player
         });
         socket.on('ready', function(data)
         {

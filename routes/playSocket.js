@@ -10,7 +10,7 @@ module.exports = function(server, middleware)
     {
         var lobby;
         var teamIndex;
-        socket.on('join', function(data)
+        socket.on('join', function(data, callback)
         {
             lobby = lobbyCache.get(data);
             if (typeof lobby !== 'undefined')
@@ -23,6 +23,16 @@ module.exports = function(server, middleware)
                     socket.emit('ready', ready);
                     socket.join(data);
                     socket.to(data).emit('ready', !ready);
+                    socket.to(data).emit('joined', socket.request.session.username);
+                    if (lobby.getTeamCount() > 1)
+                    {
+                        var otherTeam = lobby.getTeam(teamIndex ^ 1);
+                        var hits = otherTeam.ships.map(function (ship) {
+                            return ship.hitLocations;
+                        });
+                        var misses = otherTeam.missLocations;
+                        callback({hits: hits, misses: misses});
+                    }
                 }
             }
         });
@@ -31,7 +41,26 @@ module.exports = function(server, middleware)
             if (lobby.activeTeam === teamIndex)
             {
                 var otherTeamIndex = teamIndex ^ 1;
-                callback(typeof lobby.getTeam(otherTeamIndex).getShipAt(data.x, data.y) !== 'undefined');
+                var otherTeam = lobby.getTeam(otherTeamIndex);
+                var hitShip = otherTeam.getShipAt(data.x, data.y);
+                var hit = (typeof hitShip !== 'undefined');
+                callback(hit);
+                if(hit)
+                {
+                    if (typeof hitShip.hitLocations === 'undefined')
+                    {
+                        hitShip.hitLocations = [];
+                    }
+                    hitShip.hitLocations.push({x: data.x, y: data.y});
+                }
+                else
+                {
+                    if (typeof otherTeam.missLocations === 'undefined')
+                    {
+                        otherTeam.missLocations = [];
+                    }
+                    otherTeam.missLocations.push({x: data.x, y: data.y});
+                }
                 socket.emit('ready', false);
                 socket.to(lobby.id).emit('ready', true);
                 lobby.activeTeam = lobby.activeTeam ^ 1;
