@@ -2,6 +2,11 @@ var socket = require('socket.io');
 var lobbyCache = require('../models/LobbyCache');
 var io;
 
+var allShipsFound = function(team)
+{
+    return false;
+};
+
 module.exports = function(server, middleware)
 {
     io = socket.listen(server);
@@ -52,6 +57,12 @@ module.exports = function(server, middleware)
                         hitShip.hitLocations = [];
                     }
                     hitShip.hitLocations.push({x: data.x, y: data.y});
+                    if (allShipsFound(otherTeam))
+                    {
+                        socket.emit('end', true);
+                        socket.to(lobby.id).emit('end', false);
+                        return;
+                    }
                 }
                 else
                 {
