@@ -51,10 +51,12 @@ var play =
             if(won)
             {
                 console.log('you won');
+                alert('you won');
             }
             else
             {
                 console.log('you lost');
+                alert('you lost');
             }
         });
         $('table.board td').click(function()

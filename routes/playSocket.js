@@ -6,7 +6,7 @@ var allShipsFound = function(team)
 {
     return team.ships.every(function(ship)
     {
-        return Number(ship.size) === ship.hitLocations.length;
+        return Number(ship.size) === (ship.hitLocations.length || 0);
     });
 };
 
@@ -64,6 +64,7 @@ module.exports = function(server, middleware)
                     {
                         socket.emit('end', true);
                         socket.to(lobby.id).emit('end', false);
+                        lobbyCache.remove(lobby.id);
                         return;
                     }
                 }
