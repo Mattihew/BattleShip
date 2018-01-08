@@ -38,7 +38,7 @@ var play =
         socket.on('joined', function(playerName)
         {
             console.log('player "' + playerName + '" has joined');
-            //todo display to player
+            alert('player "' + playerName + '" has joined');
         });
         socket.on('ready', function(data)
         {
