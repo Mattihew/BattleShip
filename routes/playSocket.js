@@ -4,7 +4,10 @@ var io;
 
 var allShipsFound = function(team)
 {
-    return false;
+    return team.ships.every(function(ship)
+    {
+        return Number(ship.size) === ship.hitLocations.length;
+    });
 };
 
 module.exports = function(server, middleware)

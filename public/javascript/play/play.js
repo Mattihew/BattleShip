@@ -46,6 +46,17 @@ var play =
             board.toggleClass('active', data);
             board.toggleClass('disabled', !data);
         });
+        socket.on('end', function(won)
+        {
+            if(won)
+            {
+                console.log('you won');
+            }
+            else
+            {
+                console.log('you lost');
+            }
+        });
         $('table.board td').click(function()
         {
             var cell = $(this);
