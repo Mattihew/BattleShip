@@ -6,7 +6,11 @@ var allShipsFound = function(team)
 {
     return team.ships.every(function(ship)
     {
-        return Number(ship.size) === (ship.hitLocations.length || 0);
+        if (!Array.isArray(ship.hitLocations))
+        {
+            return false;
+        }
+        return Number(ship.size) === ship.hitLocations.length;
     });
 };
 
@@ -55,7 +59,7 @@ module.exports = function(server, middleware)
                 callback(hit);
                 if(hit)
                 {
-                    if (typeof hitShip.hitLocations === 'undefined')
+                    if (!Array.isArray(hitShip.hitLocations))
                     {
                         hitShip.hitLocations = [];
                     }
