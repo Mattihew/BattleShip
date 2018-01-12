@@ -22,9 +22,9 @@ module.exports = function(server, middleware)
     {
         var lobby;
         var teamIndex;
-        socket.on('join', function(data, callback)
+        socket.on('join', function(lobbyId, callback)
         {
-            lobby = lobbyCache.get(data);
+            lobby = lobbyCache.get(lobbyId);
             if (typeof lobby !== 'undefined')
             {
                 teamIndex = lobby.getPlayerTeamIndex(socket.request.session.username);
@@ -33,9 +33,9 @@ module.exports = function(server, middleware)
                 {
                     var ready = teamIndex === lobby.activeTeam && lobby.getTeamCount() > 1;
                     socket.emit('ready', ready);
-                    socket.join(data);
-                    socket.to(data).emit('ready', !ready);
-                    socket.to(data).emit('joined', socket.request.session.username);
+                    socket.join(lobbyId);
+                    socket.to(lobbyId).emit('ready', !ready);
+                    socket.to(lobbyId).emit('joined', socket.request.session.username);
                     if (lobby.getTeamCount() > 1)
                     {
                         var otherTeam = lobby.getTeam(teamIndex ^ 1);
@@ -48,13 +48,13 @@ module.exports = function(server, middleware)
                 }
             }
         });
-        socket.on('select', function(data, callback)
+        socket.on('select', function(point, callback)
         {
             if (lobby.activeTeam === teamIndex)
             {
                 var otherTeamIndex = teamIndex ^ 1;
                 var otherTeam = lobby.getTeam(otherTeamIndex);
-                var hitShip = otherTeam.getShipAt(data.x, data.y);
+                var hitShip = otherTeam.getShipAt(point.x, point.y);
                 var hit = (typeof hitShip !== 'undefined');
                 callback(hit);
                 if(hit)
@@ -63,7 +63,7 @@ module.exports = function(server, middleware)
                     {
                         hitShip.hitLocations = [];
                     }
-                    hitShip.hitLocations.push({x: data.x, y: data.y});
+                    hitShip.hitLocations.push({x: point.x, y: point.y});
                     if (allShipsFound(otherTeam))
                     {
                         socket.emit('end', true);
@@ -78,7 +78,7 @@ module.exports = function(server, middleware)
                     {
                         otherTeam.missLocations = [];
                     }
-                    otherTeam.missLocations.push({x: data.x, y: data.y});
+                    otherTeam.missLocations.push({x: point.x, y: point.y});
                 }
                 socket.emit('ready', false);
                 socket.to(lobby.id).emit('ready', true);

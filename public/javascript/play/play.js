@@ -40,11 +40,11 @@ var play =
             console.log('player "' + playerName + '" has joined');
             alert('player "' + playerName + '" has joined');
         });
-        socket.on('ready', function(data)
+        socket.on('ready', function(isReady)
         {
             var board = $('table.board');
-            board.toggleClass('active', data);
-            board.toggleClass('disabled', !data);
+            board.toggleClass('active', isReady);
+            board.toggleClass('disabled', !isReady);
         });
         socket.on('end', function(won)
         {
@@ -66,9 +66,9 @@ var play =
             var y = cell.data('y');
             if (cell.parents('table').hasClass('enemy-board'))
             {
-                socket.emit('select', {x: x, y: y}, function(data)
+                socket.emit('select', {x: x, y: y}, function(hit)
                 {
-                    if(data)
+                    if(hit)
                     {
                         cell.addClass('hit');
                     }
